@@ -8,10 +8,10 @@
 
 import UIKit
 
-protocol PYToolBarViewProtocol {
+public protocol PYToolBarViewProtocol {
     func registerToolBarView()->(PYToolBarView)
 }
-class PYToolBarScrollView: UIScrollView,UIScrollViewDelegate {
+public class PYToolBarScrollView: UIScrollView,UIScrollViewDelegate {
     
     ///顶部的View
     var topView: UIView = UIView()

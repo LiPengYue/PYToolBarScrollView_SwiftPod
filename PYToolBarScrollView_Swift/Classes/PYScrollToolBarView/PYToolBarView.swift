@@ -10,7 +10,7 @@ import UIKit
 ///toolBarViewOptionTag值统一都加了1000
 let toolBarViewOptionTagBasis: NSInteger = 1000
 
-class PYToolBarView: UIView {
+public class PYToolBarView: UIView {
     
     //MARK: --------------- 私有属性 --------------------------
     ///optionTitleStrArray(这个属性是生成toolBarView的关键)
