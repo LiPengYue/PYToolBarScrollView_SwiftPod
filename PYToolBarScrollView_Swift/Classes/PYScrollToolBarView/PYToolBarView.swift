@@ -268,15 +268,6 @@ public class PYToolBarView: UIView {
     
     
     //MARK: --------------- 创建 （init） -----------------------------
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        self.backgroundColor = UIColor.white
-    }
-    
-    required public init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        self.backgroundColor = UIColor.white
-    }
     
     //MARK: --------------  布局子控件（layoutSubviews） --------------
     override public func layoutSubviews() {
