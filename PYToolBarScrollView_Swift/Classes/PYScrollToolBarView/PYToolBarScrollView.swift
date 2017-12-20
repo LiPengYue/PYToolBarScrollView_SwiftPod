@@ -163,7 +163,7 @@ public class PYToolBarScrollView: UIScrollView,UIScrollViewDelegate {
         self.configure(toolBarView: toolBarView, topView: topView, bottomViewArray: bottomViewArray, topViewH: topViewH, toolBarViewH: toolBarViewH, toolBarViewMargin: toolBarViewMargin, isHaveTabBar: isHaveTabBar)
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
@@ -196,7 +196,7 @@ public class PYToolBarScrollView: UIScrollView,UIScrollViewDelegate {
     }
     
     //MARK: ------------------- layoutSubviews --------------------
-    override func layoutSubviews() {
+    override public func layoutSubviews() {
         //如果常用值没值 那么就赋值 并且设置了self.contentSize
         self.setCommonValue()
         self.contentSize = CGSize(width: 0, height: kTopViewH + kToolBarScrollViewH)
@@ -329,7 +329,7 @@ public class PYToolBarScrollView: UIScrollView,UIScrollViewDelegate {
     }
     
     ///通知的方法
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+    override public func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         if keyPath == "contentOffset" {
             
             if kTopViewH <= 0 {
@@ -372,7 +372,7 @@ public class PYToolBarScrollView: UIScrollView,UIScrollViewDelegate {
         }
     }
     
-    internal func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if scrollView.tag == bottomScrollViewTag {
             //拿到滚动的下标
             //            print("-----",scrollView.contentOffset)
