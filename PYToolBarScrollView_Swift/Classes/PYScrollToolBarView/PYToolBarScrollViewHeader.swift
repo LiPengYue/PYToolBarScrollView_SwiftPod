@@ -7,6 +7,6 @@
 
 import UIKit
 
-class PYToolBarScrollViewHeader: NSObject {
+public class PYToolBarScrollViewHeader: NSObject {
 
 }

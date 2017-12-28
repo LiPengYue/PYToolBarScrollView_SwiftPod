@@ -32,12 +32,12 @@ public class PYToolBarView: UIView {
         return lineFrameArray
     }()
     ///点击事件的回调
-    var clickOptionCallBack: ((UIButton,String,NSInteger)->())?
+    public var clickOptionCallBack: ((UIButton,String,NSInteger)->())?
     ///是否要刷新subView
     private var isLayoutSubView: Bool?
     
     ///将要改变当前选中button的方法
-    var willChangeCurrentIndexBlock: ((_ fromeIndex:NSInteger, _ toIndex: NSInteger) -> (Bool))?
+    public var willChangeCurrentIndexBlock: ((_ fromeIndex:NSInteger, _ toIndex: NSInteger) -> (Bool))?
     
     
     //MARK: ------------------ 下面的开始属性的设置 -------------------------
@@ -45,7 +45,7 @@ public class PYToolBarView: UIView {
     
     //MARK: ------------------ 选项的title数组 --------------------------
     ///optionTitleStrArray(这个属性是生成toolBarView的关键) (计算属性)
-    var optionTitleStrArray: [String] {
+    public var optionTitleStrArray: [String] {
         get {
             return _optionTitleStrArray
         }
@@ -57,7 +57,7 @@ public class PYToolBarView: UIView {
     
     //MARK: ------------------ 手动刷新UI --------------------------
     ///考虑到性能 大家一定要手动刷新UI 才能为子控件布局
-    func displayUI() {
+    public func displayUI() {
         self.isLayoutSubView = true
         
         for view in self.subviews {
@@ -86,19 +86,19 @@ public class PYToolBarView: UIView {
      * * title: 选项的描述
      * * index: 点击的索引
      */
-    func clickOptionCallBackFunc(clickOptionCallBack: @escaping (_ option: UIButton, _ optionTitle: String, _ optionIndex: NSInteger) -> Swift.Void){
+    public func clickOptionCallBackFunc(clickOptionCallBack: @escaping (_ option: UIButton, _ optionTitle: String, _ optionIndex: NSInteger) -> Swift.Void){
         self.clickOptionCallBack = clickOptionCallBack
     }
-    func willChanageCurrentPageFunc(_ event:@escaping ((_ fromeIndex:NSInteger, _ toIndex: NSInteger) -> (Bool))) {
+    public func willChanageCurrentPageFunc(_ event:@escaping ((_ fromeIndex:NSInteger, _ toIndex: NSInteger) -> (Bool))) {
         self.willChangeCurrentIndexBlock = event
     }
     
     //MARK: ------------------ 关于中间line --------------------------------
     ///线宽 默认是1.0
-    var lineWidth: CGFloat = 1.0
+    public var lineWidth: CGFloat = 1.0
     
     ///线的与选项之间的间离，（默认centerY 与 option的centerY对齐）
-    var distanceBetweenLine: CGFloat {
+    public var distanceBetweenLine: CGFloat {
         get {
             return _distanceBetweenLine
         }
@@ -110,14 +110,14 @@ public class PYToolBarView: UIView {
     
     
     ///线的位置集合 (只读计算属性)
-    var lineFrameArray: [NSValue] {
+     public var lineFrameArray: [NSValue] {
         get {
             return _lineFrameArray
         }
     }
     
     ///自定义line的颜色 (默认是灰色)
-    lazy var lineColor: UIColor = {
+    public lazy var lineColor: UIColor = {
         let color = UIColor.lightGray
         return color
     }()
@@ -127,46 +127,46 @@ public class PYToolBarView: UIView {
     //MARK: ------------------ 关于option --------------------------------
     ///option颜色状态
     
-    var customOptionUICallBack: ((_ option: UIButton,_ index: NSInteger, _ title: String)->())?
+    public var customOptionUICallBack: ((_ option: UIButton,_ index: NSInteger, _ title: String)->())?
     ///自定义option的样式，可以统一的改变option的样式（比如形状，大小）
-    func customOptionUICallFunc(customOptionUICallBack:@escaping (_ option: UIButton,_ index: NSInteger, _ title: String) -> ()) {
+    public func customOptionUICallFunc(customOptionUICallBack:@escaping (_ option: UIButton,_ index: NSInteger, _ title: String) -> ()) {
         self.customOptionUICallBack = customOptionUICallBack
     }
     
     ///option默认颜色 （默认为黑色）
-    lazy var optionColorNormal: UIColor? = {
+    public lazy var optionColorNormal: UIColor? = {
         let color: UIColor = UIColor.black
         return color
     }()
     
     ///option选中时候的颜色 （默认为红色）
-    lazy var optionColorSelected: UIColor? = {
+    public lazy var optionColorSelected: UIColor? = {
         let color: UIColor = UIColor.red
         return color
     }()
     
     ///option高亮状态下的颜色 (默认为黑色)
-    lazy var optionColorHighlighted: UIColor? = {
+    public lazy var optionColorHighlighted: UIColor? = {
         let color: UIColor = self.optionColorNormal!
         return color
     }()
     
     ///optionFont: 字体 (默认系统字体20)
-    lazy var optionFont: UIFont = {
+    public lazy var optionFont: UIFont = {
         let font: UIFont = UIFont.systemFont(ofSize: 20)
         return font
     }()
     
     ///option选中的背景色
-    lazy var optionBackgroundColorSelected: UIColor = {
+    public lazy var optionBackgroundColorSelected: UIColor = {
         return self.optionBackgroundColorNormal
     }()
     ///option选中的背景色
-    lazy var optionBackgroundColorNormal: UIColor = {
+    public lazy var optionBackgroundColorNormal: UIColor = {
         return self.backgroundColor ?? UIColor.white
     }()
     ///选中的option 计算属性
-    var selectOption: UIButton {
+    public var selectOption: UIButton {
         get {
             return _selectOption
         }
@@ -180,7 +180,7 @@ public class PYToolBarView: UIView {
     }
     
     ///选中的option 下标 (只读计算属性 默认为0)
-    var selectOptionIndex: NSInteger {
+    public var selectOptionIndex: NSInteger {
         get {
             return _selectOptionIndex
         }
@@ -206,31 +206,31 @@ public class PYToolBarView: UIView {
     
     
     ///optionW: 选项的宽度 (只读计算属性)
-    var optionW: CGFloat? {
+    public var optionW: CGFloat? {
         get {
             return _optionW
         }
     }
     
     ///每个选项的frame (只读计算属性)
-    var optionFrameArray: [NSValue] {
+    public var optionFrameArray: [NSValue] {
         get {
             return _optionFrameArray
         }
     }
     
     ///option的集合 (懒加载)
-    var optionArray: [UIButton] =  [UIButton]()
+    public var optionArray: [UIButton] =  [UIButton]()
     
     ///option是否允许重复点击
-    var isRecurClick: Bool = true
+    public var isRecurClick: Bool = true
     
     
     //MARK: ------------- 关于自定义动画的属性 ------------------------
     ///动画的View
-    var _animaIndicatorBarView: UIView = UIView.init()
+    public var _animaIndicatorBarView: UIView = UIView.init()
     ///动画的view （计算属性）
-    var animaIndicatorBarView: UIView {
+    public var animaIndicatorBarView: UIView {
         get{
             return _animaIndicatorBarView
         }
@@ -240,16 +240,16 @@ public class PYToolBarView: UIView {
         }
     }
     ///动画view的动画时间 （默认是0.2秒）
-    var animaIndicatorBarView_animaTime: CGFloat = 0.2
+    public var animaIndicatorBarView_animaTime: CGFloat = 0.2
     ///动画view的高度 (默认是2.0)
-    var animaIndicatorBarViewH: CGFloat = 2.0
+    public var animaIndicatorBarViewH: CGFloat = 2.0
     ///动画view与option边缘的间距 (默认是0)
-    var animaIndicatorBarViewMargin: CGFloat = 0
+    public var animaIndicatorBarViewMargin: CGFloat = 0
     ///动画view的背景颜色
-    var animaIndicatorBarViewColor: UIColor = UIColor.blue
+    public var animaIndicatorBarViewColor: UIColor = UIColor.blue
     
     ///自定义option选中时候的动画
-    var customOptionWhenChangeSelectOptionIndex: ( (_ fromOption: UIButton, _ toOption: UIButton, _ fromIndex: NSInteger, _ toIndex: NSInteger)->())?
+    public var customOptionWhenChangeSelectOptionIndex: ( (_ fromOption: UIButton, _ toOption: UIButton, _ fromIndex: NSInteger, _ toIndex: NSInteger)->())?
     
     ///关于更换选中按钮时候的动画自定义
     /**
@@ -259,7 +259,7 @@ public class PYToolBarView: UIView {
      * fromIndex:  fromOption的下标
      * toIndex: toOption的下标
      */
-    func customOptionWhenChangeSelectOptionFunc(customOptionWhenChangeSelectOptionIndex: @escaping (_ fromOption: UIButton, _ toOption: UIButton, _ fromIndex: NSInteger, _ toIndex: NSInteger)->()) {
+    public func customOptionWhenChangeSelectOptionFunc(customOptionWhenChangeSelectOptionIndex: @escaping (_ fromOption: UIButton, _ toOption: UIButton, _ fromIndex: NSInteger, _ toIndex: NSInteger)->()) {
         //关闭重复点击
         self.isRecurClick = false
         self.customOptionWhenChangeSelectOptionIndex = customOptionWhenChangeSelectOptionIndex
@@ -268,7 +268,7 @@ public class PYToolBarView: UIView {
     
     
     //MARK: --------------- 创建 （init） -----------------------------
-    override init(frame: CGRect) {
+    public override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = UIColor.white
     }
@@ -327,7 +327,7 @@ public class PYToolBarView: UIView {
 private extension PYToolBarView {
     
     //MARK: option宽度
-    func getOptionWitdhFunc() -> CGFloat{
+   public func getOptionWitdhFunc() -> CGFloat{
         return (self.frame.size.width - CGFloat(NSInteger(self.optionTitleStrArray.count - 1)) * CGFloat(self.lineWidth)) / CGFloat(NSInteger( self.optionTitleStrArray.count))
     }
     
