@@ -8,11 +8,11 @@
 
 import UIKit
 
-
-protocol PYToolBarViewProtocol {
+public protocol PYToolBarViewProtocol {
     func registerToolBarView()->(PYToolBarView)
 }
-class PYToolBarScrollView: UIScrollView,UIScrollViewDelegate {
+
+public class PYToolBarScrollView: UIScrollView,UIScrollViewDelegate {
     
     ///顶部的View
     var topView: UIView = UIView()
@@ -167,7 +167,7 @@ class PYToolBarScrollView: UIScrollView,UIScrollViewDelegate {
         self.configure(toolBarView: toolBarView, topView: topView, bottomViewArray: bottomViewArray, topViewH: topViewH, toolBarViewH: toolBarViewH, toolBarViewMargin: toolBarViewMargin, isHaveTabBar: isHaveTabBar)
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
@@ -207,7 +207,7 @@ class PYToolBarScrollView: UIScrollView,UIScrollViewDelegate {
     }
     
     //MARK: ------------------- layoutSubviews --------------------
-    override func layoutSubviews() {
+    override public func layoutSubviews() {
         //如果常用值没值 那么就赋值 并且设置了self.contentSize
         self.setCommonValue()
         self.contentSize = CGSize(width: 0, height: kTopViewH + kToolBarScrollViewH)
@@ -239,8 +239,6 @@ class PYToolBarScrollView: UIScrollView,UIScrollViewDelegate {
         if self.kToolBarScrollViewW == 0 || self.kToolBarScrollViewH == 0 {
             self.kToolBarScrollViewH = self.frame.size.height
             self.kToolBarScrollViewW = self.frame.size.width
-//            self.kBottomScrollViewY = self.kTopViewH + self.kMidToolBarViewH
-//            self.kBottomScrollViewH = self.frame.size.height - kMidToolBarViewH - CGFloat(self.tabBarH)
             self.kBottomScrollViewY = 0
             self.kBottomScrollViewH = self.frame.size.height
             self.index = self.midToolBarView.selectOptionIndex
@@ -332,7 +330,6 @@ class PYToolBarScrollView: UIScrollView,UIScrollViewDelegate {
                     // Fallback on earlier versions
                 }
                 self.panGestureRecognizer.require(toFail: scrollView.panGestureRecognizer)
-//                self.panGestureRecognizer.require(toFail: bottomScrollView.panGestureRecognizer)
             }
         }
         isRegisterObserver = true
@@ -350,7 +347,7 @@ class PYToolBarScrollView: UIScrollView,UIScrollViewDelegate {
     }
     
     ///通知的方法
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+    override public func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         if keyPath == "contentOffset" {
             
             if kTopViewH <= 0 {
@@ -381,14 +378,12 @@ class PYToolBarScrollView: UIScrollView,UIScrollViewDelegate {
                 self.topView.setY(Y: 0)
                 midView.setY(Y: kTopViewH)
             }
-          print("🌶 \(newValue)")
         }
     }
 
-    internal func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if scrollView.tag == bottomScrollViewTag {
             //拿到滚动的下标
-            //            print("-----",scrollView.contentOffset)
             let indexFloat = scrollView.contentOffset.x / self.frame.size.width
             
             //平衡contentOffset
@@ -468,17 +463,15 @@ class PYToolBarScrollView: UIScrollView,UIScrollViewDelegate {
         }
     }
     
-    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+    public func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         
     }
-    func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
+    public func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
         scrollView.contentOffset = CGPoint.init(x: 0, y: 0)
     }
     
     func setContentInset(scrollView: UIScrollView) {
         if scrollView.contentSize.height <= scrollView.frame.size.height + kTopViewH - self.contentOffset.y {
-            
-            //                let insertY = scrollView.frame.size.height + kTopViewH - scrollView.contentSize.height - scrollView.contentInset.top - self.contentOffset.y
             
             var insertY = scrollView.frame.size.height - scrollView.contentSize.height  - self.contentOffset.y - kMidToolBarViewH
             insertY = (insertY < 0) ? 0 : insertY

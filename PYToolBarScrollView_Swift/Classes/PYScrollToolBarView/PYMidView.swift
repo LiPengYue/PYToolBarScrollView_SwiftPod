@@ -8,8 +8,8 @@
 //
 
 import UIKit
-class PYMidView: UIView {
-    required init?(coder aDecoder: NSCoder) {
+public class PYMidView: UIView {
+    required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     override init(frame: CGRect) {
@@ -18,7 +18,7 @@ class PYMidView: UIView {
     var delegate: PYToolBarViewProtocol?
     private var isFirstSetToolBarUI: Bool = true
     
-    override func layoutSubviews() {
+    override public func layoutSubviews() {
         if isFirstSetToolBarUI {
             self.delegate?.registerToolBarView().displayUI()
             layoutIfNeeded()

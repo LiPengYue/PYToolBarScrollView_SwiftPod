@@ -10,7 +10,7 @@ import UIKit
 ///toolBarViewOptionTag值统一都加了1000
 let toolBarViewOptionTagBasis: NSInteger = 1000
 
-class PYToolBarView: UIView {
+public class PYToolBarView: UIView {
     
     //MARK: --------------- 私有属性 --------------------------
     ///optionTitleStrArray(这个属性是生成toolBarView的关键)
@@ -273,13 +273,13 @@ class PYToolBarView: UIView {
         self.backgroundColor = UIColor.white
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         self.backgroundColor = UIColor.white
     }
     
     //MARK: --------------  布局子控件（layoutSubviews） --------------
-    override func layoutSubviews() {
+    override public func layoutSubviews() {
         super.layoutSubviews()
         if isLayoutSubView == true {
             self.displaySubViwe()
@@ -290,7 +290,7 @@ class PYToolBarView: UIView {
     
     
     //MARK: --------------- 绘图 ----------------------------
-    override func draw(_ rect: CGRect) {
+    override public func draw(_ rect: CGRect) {
         
         guard let context: CGContext = UIGraphicsGetCurrentContext() else { return print("toolBar上下文获取失败") }
         if lineFrameArray.count < optionTitleStrArray.count {
