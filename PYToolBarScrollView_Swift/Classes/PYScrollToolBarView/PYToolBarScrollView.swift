@@ -233,7 +233,7 @@ public class PYToolBarScrollView: UIScrollView,UIScrollViewDelegate {
     
     ///为私有的参考量赋值
     private func setCommonValue() {
-        if self.frame.size.width == nil || self.frame.size.width == 0{
+        if self.frame.size.width == 0{
             self.layoutIfNeeded()
         }
         if self.kToolBarScrollViewW == 0 || self.kToolBarScrollViewH == 0 {
@@ -387,7 +387,7 @@ public class PYToolBarScrollView: UIScrollView,UIScrollViewDelegate {
             let indexFloat = scrollView.contentOffset.x / self.frame.size.width
             
             //平衡contentOffset
-            var frontIndex = midToolBarView.selectOptionIndex
+            let frontIndex = midToolBarView.selectOptionIndex
             let bottomViewCont = bottomViewArray.count
             if indexFloat > CGFloat(frontIndex) {
                 let wellIndex = frontIndex + 1
@@ -420,7 +420,7 @@ public class PYToolBarScrollView: UIScrollView,UIScrollViewDelegate {
                 let index_ = NSInteger(index)
                
                 self.midToolBarView.selectOptionIndex = index_
-                if let behindScroView = self.bottomViewArray[index_] as? UIScrollView {
+                if self.bottomViewArray[index_] is UIScrollView {
                   
                     let title = self.midToolBarView.optionTitleStrArray[index_]
                     let button = self.midToolBarView.optionArray[index_]
