@@ -323,7 +323,7 @@ public class PYToolBarView: UIView {
     }
     
     //MARK: option宽度
-    private func getOptionWitdhFunc() -> CGFloat{
+    func getOptionWitdhFunc() -> CGFloat{
         return (self.frame.size.width - CGFloat(NSInteger(self.optionTitleStrArray.count - 1)) * CGFloat(self.lineWidth)) / CGFloat(NSInteger( self.optionTitleStrArray.count))
     }
 }
